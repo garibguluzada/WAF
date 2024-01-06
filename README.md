@@ -22,6 +22,18 @@ This project is a Web Application Firewall (WAF) designed to protect against com
 ## Getting Started
 To get started with the WAF project, follow these steps:
 
+### Setting up the Database
+1. Install MySQL server: [MySQL Downloads](https://dev.mysql.com/downloads/)
+2. Create a new MySQL database and user for the WAF project. Replace `<database-name>`, `<user-name>`, and `<password>` with your desired values.
+    ```sql
+    CREATE DATABASE <database-name>;
+    CREATE USER '<user-name>'@'localhost' IDENTIFIED BY '<password>';
+    GRANT ALL PRIVILEGES ON <database-name>.* TO '<user-name>'@'localhost';
+    FLUSH PRIVILEGES;
+    ```
+3. Configure the database settings in the `get_db()` function of `app.py` with the created database, user, and password.
+
+
 1. Clone the repository: `git clone <repository-url>`
 2. Install the required dependencies: `pip install -r requirements.txt`
 3. Configure the database settings in the `get_db()` function of `app.py`.
