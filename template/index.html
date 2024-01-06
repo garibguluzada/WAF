@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <!-- Include necessary stylesheets and scripts -->
+  <link rel="stylesheet" href="../static/style.css">
+  <meta name="csrf-token" content="{{ csrf_token() }}">  <!-- Include the CSRF token directly -->
+</head>
+<body>
+  <div class="error-container">
+   
+   
+    {% if path_traversal_error %}
+    <p class="error-message">Invalid input. Path traversal detected.</p>
+    {% endif %}
+  </div>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <form id="loginForm" action="{{ url_for('login') }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">  <!-- Include the CSRF token as a hidden field -->
+    
+    <h3>Login Here</h3>
+    <label for="username">Username</label>
+    <input type="text" placeholder="Email or Phone" id="username" name="username">
+
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" id="password" name="password">
+
+    <div id="errorContainer">
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+    </div>
+
+    <button type="submit" id="loginBtn">Log In</button>
+    
+  </form>
+  <script src="../script.js"></script>
+</body>
+</html>
